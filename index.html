@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daily Phone Timeline</title>
+    <link rel="stylesheet" href="syles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="notification-center" aria-live="polite" aria-atomic="true">
+        <div id="notification-stack" class="notification-stack"></div>
+      </section>
+
+      <header class="app-header">
+        <button class="icon-button" aria-label="Go back">
+          <span class="chevron"></span>
+        </button>
+        <div class="header-copy">
+          <h1>Today's phone usage record</h1>
+          <p class="subdued">Tracking from 08:00 to 23:00</p>
+        </div>
+        <button class="icon-button info-icon" aria-label="More info">
+          i
+        </button>
+      </header>
+
+      <nav class="day-selector" aria-label="Select day" id="day-selector"></nav>
+
+      <div class="day-summary">
+        <h2 id="selected-day-label">Today</h2>
+        <span id="selected-day-range" class="day-range">Today · 08:00 – 23:00</span>
+      </div>
+
+      <p class="tip">
+        Tip: Keep the tracking app active to collect accurate phone usage
+        events throughout the day.
+      </p>
+
+      <section class="timeline" aria-live="polite">
+        <ul id="timeline" class="timeline-list"></ul>
+      </section>
+    </main>
+
+    <script src="app.js" defer></script>
+  </body>
+</html>

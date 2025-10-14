@@ -1,0 +1,370 @@
+:root {
+  color-scheme: light;
+  font-family: "Inter", "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  background-color: #ecf1f7;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at top, #f8fbff 0%, #ecf1f7 100%);
+  color: #1f2933;
+}
+
+.app-shell {
+  width: min(420px, 92vw);
+  min-height: 640px;
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 24px 22px 28px;
+  box-shadow: 0 22px 50px rgba(52, 84, 209, 0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+}
+
+.notification-center {
+  position: absolute;
+  top: 18px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+  padding-inline: 22px;
+  z-index: 10;
+}
+
+.notification-stack {
+  position: relative;
+  width: 100%;
+  max-width: 360px;
+  min-height: 72px;
+}
+
+.notification-card {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  background: linear-gradient(135deg, rgba(248, 251, 255, 0.98), rgba(226, 233, 242, 0.98));
+  border-radius: 20px;
+  border: 1px solid rgba(209, 216, 229, 0.7);
+  padding: 14px 18px;
+  box-shadow: 0 18px 32px rgba(30, 64, 175, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  opacity: 0;
+  transform: translateY(-120%);
+  transition: opacity 280ms ease, transform 320ms cubic-bezier(0.18, 0.89, 0.32, 1.28);
+}
+
+.notification-card.enter {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.notification-card.leave {
+  opacity: 0;
+  transform: translateY(-120%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .notification-card {
+    transition: none;
+    transform: none;
+  }
+}
+
+.notification-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.notification-icon-box {
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  background: rgba(209, 213, 219, 0.6);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.8);
+}
+
+.notification-body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.notification-title {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.notification-text {
+  font-size: 0.86rem;
+  color: #1f2937;
+}
+
+.notification-time {
+  font-size: 1.24rem;
+  font-weight: 600;
+  color: #111827;
+  font-variant-numeric: tabular-nums;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.header-copy {
+  flex: 1;
+}
+
+.app-header h1 {
+  font-size: 1.1rem;
+  margin: 0;
+  color: #101828;
+}
+
+.subdued {
+  margin: 4px 0 0;
+  font-size: 0.78rem;
+  color: #6b7280;
+}
+
+.icon-button {
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  border: none;
+  background: #f3f4f6;
+  color: #374151;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  transition: transform 120ms ease, background-color 120ms ease;
+}
+
+.icon-button:active {
+  transform: scale(0.96);
+}
+
+.icon-button:focus-visible {
+  outline: 2px solid #9fc131;
+  outline-offset: 2px;
+}
+
+.chevron {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border: solid #1f2933;
+  border-width: 0 2px 2px 0;
+  transform: rotate(135deg);
+  margin-left: 2px;
+}
+
+.info-icon {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.day-selector {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.day-selector button {
+  border: none;
+  border-radius: 14px;
+  padding: 10px 0;
+  background: #f1f5f9;
+  font-size: 0.82rem;
+  color: #475569;
+  cursor: pointer;
+  transition: background-color 150ms ease, color 150ms ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2px;
+  font-weight: 600;
+}
+
+.day-selector button strong {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: inherit;
+}
+
+.day-selector button span {
+  display: block;
+  font-size: 0.65rem;
+  font-weight: 500;
+  color: #94a3b8;
+}
+
+.day-selector button.active {
+  background: linear-gradient(135deg, #e9ff90, #c9f044);
+  color: #1f2933;
+  font-weight: 600;
+  box-shadow: 0 5px 14px rgba(201, 240, 68, 0.35);
+}
+
+.day-selector button.active strong {
+  color: inherit;
+}
+
+.day-selector button.active span {
+  color: #3f6212;
+}
+
+.day-selector button:hover:not(.active) {
+  background: #e2e8f0;
+}
+
+.day-summary {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.day-summary h2 {
+  margin: 0;
+  font-size: 1rem;
+  color: #0f172a;
+}
+
+.day-range {
+  font-size: 0.74rem;
+  color: #64748b;
+  font-variant-numeric: tabular-nums;
+}
+
+.tip {
+  margin: 0;
+  padding: 12px 14px;
+  background: #f8fafc;
+  border-radius: 18px;
+  color: #64748b;
+  font-size: 0.78rem;
+  line-height: 1.3;
+  border: 1px solid #e2e8f0;
+}
+
+.timeline {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.timeline-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  max-height: min(520px, 60vh);
+  border-radius: 20px;
+  background: linear-gradient(160deg, rgba(240, 244, 250, 0.9), rgba(250, 253, 255, 0.9));
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  padding: 6px 0;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.75);
+}
+
+.timeline-list li {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 20px;
+  font-size: 0.88rem;
+  color: #1f2933;
+}
+
+.timeline-list li + li {
+  border-top: 1px solid rgba(226, 232, 240, 0.7);
+}
+
+.timeline-time {
+  min-width: 48px;
+  font-variant-numeric: tabular-nums;
+  color: #475569;
+  font-size: 0.82rem;
+}
+
+.timeline-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  color: #1f2933;
+  background: #f1f5f9;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+.timeline-icon.unlock {
+  background: rgba(126, 217, 87, 0.25);
+  color: #3f8a18;
+}
+
+.timeline-icon.lock {
+  background: rgba(77, 106, 142, 0.18);
+  color: #1f3a5f;
+}
+
+.timeline-icon.activity {
+  background: rgba(255, 212, 95, 0.28);
+  color: #946200;
+}
+
+.timeline-description {
+  flex: 1;
+  color: #1f2933;
+}
+
+.timeline-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.timeline-list::-webkit-scrollbar-thumb {
+  background-color: rgba(148, 163, 184, 0.6);
+  border-radius: 999px;
+}
+
+.timeline-list::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+@media (max-width: 420px) {
+  .app-shell {
+    border-radius: 18px;
+    padding: 20px 18px 24px;
+  }
+
+  .timeline-list li {
+    padding-inline: 16px;
+  }
+}
