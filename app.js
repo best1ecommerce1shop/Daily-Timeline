@@ -37,6 +37,9 @@ const iconTokens = {
   activity: "AP"
 };
 
+const notificationLogoSrc =
+  "https://i.ibb.co/tThkkJSs/Chat-GPT-Image-15-2025-01-20-23.png";
+
 let notificationTimer = null;
 let notificationIndex = 0;
 let notificationEvents = [];
@@ -238,6 +241,12 @@ function renderNotificationCard(event) {
 
   const iconBox = document.createElement("div");
   iconBox.className = "notification-icon-box";
+
+  const logo = document.createElement("img");
+  logo.className = "notification-logo";
+  logo.src = notificationLogoSrc;
+  logo.alt = "";
+  iconBox.appendChild(logo);
 
   const body = document.createElement("div");
   body.className = "notification-body";
